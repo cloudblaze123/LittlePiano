@@ -1,0 +1,56 @@
+# Node.js dependencies #
+######################
+node_modules/
+npm-debug.log
+
+
+
+# Build directory #
+###################
+/dist/
+/build/
+/out/
+
+# 忽略项目中所有目录下的 .js 文件
+**/*.js
+
+# 忽略项目中所有目录下的 .js.map 文件
+**/*.js.map
+
+
+
+
+# Prod bundle #
+###############
+*.bundle.js
+*.bundle.css
+
+# Logs #
+########
+*.log
+*.csv
+*.dat
+*.out
+*.pid
+*.seed
+
+# Runtime data #
+################
+pids
+*.pid
+*.seed
+*.pid.lock
+.cache
+
+
+# IDE / Editors #
+#################
+.vscode/
+
+# TypeScript #
+##############
+**/*.tsbuildinfo
+
+# End-of-file fixer #
+#####################
+.editorconfig
