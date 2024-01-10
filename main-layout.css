@@ -1,0 +1,33 @@
+:root{
+    --global-navigation--width: 3rem;
+}
+
+
+
+
+
+
+body{
+    width: 100vw;
+    min-height: 100vh;
+}
+
+
+
+
+.global-navigation{
+    position: fixed;
+    left: 0;
+
+    width: var(--global-navigation--width);
+    height: 100vh;
+}
+
+
+
+.main-container{
+    margin-left: var(--global-navigation--width);
+
+    width: calc(100% - var(--global-navigation--width));
+    min-height: 100vh;
+}

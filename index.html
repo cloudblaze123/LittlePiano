@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="index.css">
+
+    <title>little piano</title>
+</head>
+<body>
+    <nav class="global-navigation">
+        <ul class="navigation-list">
+            <li>
+                <span class="piano-icon">piano icon</span>
+                <span class="navigation-label">键盘</span>
+            </li>
+            <li>
+                <span class="track-icon">track icon</span>
+                <span class="navigation-label">轨道</span>
+            </li>
+            <li>
+                <span class="score-editor-icon">editor icon</span>
+                <span class="navigation-label">编辑乐谱</span>
+            </li>
+        </ul>
+    </nav>
+    <div class="main-container">
+        
+        <button onclick="()=>{this.style.display='none';}" style="z-index: 999;position: absolute;top:300px;width: 50px;height: 50px;">点我开启音频</button>
+
+        <div class="piano_keyboard" hide_pitch_tag>
+            <div class="piano_keyboard-octave" octave="4">
+                <div class="white_keybuttons">
+                    <div class="keybutton_container"><button class="keybutton white_keybutton" pitch="C4"><div class="keybutton-pitch_tag">C4</div></button></div>
+                    <div class="keybutton_container"><button class="keybutton white_keybutton" pitch="D4"><div class="keybutton-pitch_tag">D4</div></button></div>
+                    <div class="keybutton_container"><button class="keybutton white_keybutton" pitch="E4"><div class="keybutton-pitch_tag">E4</div></button></div>
+                    <div class="keybutton_container"><button class="keybutton white_keybutton" pitch="F4"><div class="keybutton-pitch_tag">F4</div></button></div>
+                    <div class="keybutton_container"><button class="keybutton white_keybutton" pitch="G4"><div class="keybutton-pitch_tag">G4</div></button></div>
+                    <div class="keybutton_container"><button class="keybutton white_keybutton" pitch="A4"><div class="keybutton-pitch_tag">A4</div></button></div>
+                    <div class="keybutton_container"><button class="keybutton white_keybutton" pitch="B4"><div class="keybutton-pitch_tag">B4</div></button></div>
+                </div>
+                <div class="black_keybuttons">
+                    
+                    <div class="keybutton_container"><button class="keybutton black_keybutton" pitch="C#4"><div class="keybutton-pitch_tag">C#4</div></button></div>
+                    <div class="keybutton_container"><button class="keybutton black_keybutton" pitch="D#4"><div class="keybutton-pitch_tag">D#4</div></button></div>
+                    
+                    <div class="keybutton_container"><button class="keybutton black_keybutton" pitch="F#4"><div class="keybutton-pitch_tag">F#4</div></button></div>
+                    <div class="keybutton_container"><button class="keybutton black_keybutton" pitch="G#4"><div class="keybutton-pitch_tag">G#4</div></button></div>
+                    <div class="keybutton_container"><button class="keybutton black_keybutton" pitch="A#4"><div class="keybutton-pitch_tag">A#4</div></button></div>
+                    
+                </div>
+            </div>
+            <div class="piano_keyboard-octave" octave="5">
+                <div class="white_keybuttons">
+                    <div class="keybutton_container"><button class="keybutton white_keybutton" pitch="C5"><div class="keybutton-pitch_tag">C5</div></button></div>
+                    <div class="keybutton_container"><button class="keybutton white_keybutton" pitch="D5"><div class="keybutton-pitch_tag">D5</div></button></div>
+                    <div class="keybutton_container"><button class="keybutton white_keybutton" pitch="E5"><div class="keybutton-pitch_tag">E5</div></button></div>
+                    <div class="keybutton_container"><button class="keybutton white_keybutton" pitch="F5"><div class="keybutton-pitch_tag">F5</div></button></div>
+                    <div class="keybutton_container"><button class="keybutton white_keybutton" pitch="G5"><div class="keybutton-pitch_tag">G5</div></button></div>
+                    <div class="keybutton_container"><button class="keybutton white_keybutton" pitch="A5"><div class="keybutton-pitch_tag">A5</div></button></div>
+                    <div class="keybutton_container"><button class="keybutton white_keybutton" pitch="B5"><div class="keybutton-pitch_tag">B5</div></button></div>
+                </div>
+                <div class="black_keybuttons">
+                    
+                    <div class="keybutton_container"><button class="keybutton black_keybutton" pitch="C#5"><div class="keybutton-pitch_tag">C#5</div></button></div>
+                    <div class="keybutton_container"><button class="keybutton black_keybutton" pitch="D#5"><div class="keybutton-pitch_tag">D#5</div></button></div>
+                    
+                    <div class="keybutton_container"><button class="keybutton black_keybutton" pitch="F#5"><div class="keybutton-pitch_tag">F#5</div></button></div>
+                    <div class="keybutton_container"><button class="keybutton black_keybutton" pitch="G#5"><div class="keybutton-pitch_tag">G#5</div></button></div>
+                    <div class="keybutton_container"><button class="keybutton black_keybutton" pitch="A#5"><div class="keybutton-pitch_tag">A#5</div></button></div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="/node_modules/tone/build/Tone.js"></script>
+    
+    <script>
+        //create a synth and connect it to the main output (your speakers)
+        const synth = new Tone.Synth().toDestination();
+
+        //play pitch for the duration of an 8th note
+        const playNote = (pitch)=>{
+            synth.triggerAttackRelease(pitch, "8n");
+            console.log("pitch "+pitch);
+        }
+    </script>
+
+    <script>
+        const pianoKeyboard=document.querySelector(".piano_keyboard");
+        const keybuttons=pianoKeyboard.querySelectorAll(".keybutton");
+        
+        let isMouseDown=false;
+
+        
+        document.addEventListener("mousedown", function(){
+            isMouseDown=true;
+        });
+        document.addEventListener("mouseup", function(){
+            isMouseDown=false;
+        });
+        
+
+        let lastPlayedKeys = null;
+        let isTouched=false;
+
+        for(const keybutton of keybuttons){
+            keybutton.addEventListener("mousedown", function(){
+                // if(isTouched){
+                //     return;
+                // }
+                console.log("mousedown");
+
+                this.classList.add("active");
+                
+                const pitch=this.getAttribute("pitch");
+                
+                playNote(pitch);
+            });
+
+            
+            keybutton.addEventListener("mouseenter", function(){
+                console.log("mouseenter");
+
+                if(!isMouseDown){
+                    return;
+                }
+
+                this.classList.add("active");
+                
+                const pitch=this.getAttribute("pitch");
+                
+                playNote(pitch);
+            });
+
+
+            keybutton.addEventListener("mouseup", function(){
+                this.classList.remove("active");
+            });
+            keybutton.addEventListener("mouseleave", function(){
+                this.classList.remove("active");
+            });
+            
+            
+            
+            
+            keybutton.addEventListener("touchstart", function(){
+                event.preventDefault();//用来防止按键事件在mousedown再处理一次
+                //目前的问题是，在手机浏览器上如果不让用户按下一次mousedown，浏览器通常不会允许网页音频
+                //但用户点击别的button按键可以解决
+                //可以考虑做一个开始界面，这样用户进入键盘演奏界面时就已经打开了音频权限
+
+                console.log("touchstart");
+
+                isTouched=true;
+
+                this.classList.add("active");
+                
+                const pitch=this.getAttribute("pitch");
+                
+                playNote(pitch);
+
+                lastPlayedKey=this;
+            });
+
+            
+            keybutton.addEventListener("touchmove", function(event){
+                event.preventDefault();
+
+                const keybutton=getKeyFromTouch(event.touches[0]);
+
+                if(keybutton!==null && keybutton!==lastPlayedKey){
+                    if(lastPlayedKey!==null){
+                        lastPlayedKey.classList.remove("active");
+                    }
+                    lastPlayedKey=keybutton;
+                    
+                    keybutton.classList.add("active");
+                    
+                    const pitch=keybutton.getAttribute("pitch");
+
+                    console.log(keybutton);
+                    
+                    
+                    playNote(pitch);
+                }
+            });
+
+
+            keybutton.addEventListener("touchend", function(){
+                if(lastPlayedKey!==null){
+                    lastPlayedKey.classList.remove("active");
+                }
+                this.classList.remove("active");
+                lastPlayedKey = null;
+                isTouched=false;
+            });
+        };
+        
+        
+        
+        function getKeyFromTouch(touch) {
+            const x=touch.clientX;
+            const y=touch.clientY;
+            // console.log(`touch at (${x}, ${y})`);
+
+            const targetElement = document.elementFromPoint(x, y);
+  
+
+            // 检查是否为 key 类的元素，如果是，则返回该元素
+            if (targetElement && targetElement.classList.contains('keybutton')) {
+                // console.log(`get key ${targetElement}`);
+                return targetElement;
+            }else{
+                // 如果不是钢琴键，则返回 null
+                return null;
+            }
+        }
+
+        
+
+    </script>
+
+
+    <!-- <script src="node_modules/interactjs/dist/interact.min.js"></script>
+
+    <script>
+
+        interact('.keybutton')
+        // .on('down', function (event) {
+        //     var keybuttonElement = event.currentTarget;
+
+        //     keybuttonElement.classList.add("active");
+                
+        //     const pitch=keybuttonElement.getAttribute("pitch");
+            
+        //     playNote(pitch);
+        // })
+        .on('enter', function (event) {
+            console.log("enter keybutton!");
+
+            var keybuttonElement = event.currentTarget;
+
+            keybuttonElement.classList.add("active");
+                
+            const pitch=keybuttonElement.getAttribute("pitch");
+            
+            playNote(pitch);
+        }); -->
+
+
+    </script>
+
+</body>
+</html>

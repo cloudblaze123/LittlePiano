@@ -1,0 +1,115 @@
+/*这里是keybutton的基础样式
+关于keybutton如何在keybuttons容器中布局和显示，请查看keybuttons.css*/
+
+
+.piano_keyboard
+.keybutton{
+}
+
+
+.piano_keyboard
+.keybutton{
+    cursor: pointer;
+}
+
+
+
+
+.piano_keyboard
+.white_keybutton{
+
+    background-color: #ddd;
+    color: #000;
+    
+    border: 1px solid #888;
+}
+
+
+.piano_keyboard
+.black_keybutton{
+
+    background-color: #222;
+    color: #fff;
+
+    border: 1px solid #888;
+}
+
+
+
+
+
+.piano_keyboard
+.keybutton:hover{
+    transform: scale(1.05);
+}
+.piano_keyboard
+.keybutton.active{
+    transform: scale(1);
+}
+
+
+.piano_keyboard
+.keybutton.active{
+    background-color: #888;
+}
+
+
+/*设置琴键阴影，提供一些显示与按下时的立体感*/
+/* .piano_keyboard
+.white_keybutton{
+    margin-right:1px;
+}
+.piano_keyboard
+.white_keybutton.active{
+    box-shadow: inset 3px 0 3px 0 rgba(0, 0, 0, 0.3);
+}
+
+.piano_keyboard
+.black_keybutton{
+    box-shadow: 3px 3px 3px 0 rgba(0, 0, 0, 0.3);
+}
+.piano_keyboard
+.black_keybutton.active{
+    box-shadow: 3px 3px 3px 0 rgba(0, 0, 0, 0.3);
+} */
+
+
+.piano_keyboard
+.keybutton{
+    transition: all 0.1s;
+}
+
+
+
+
+
+
+/*按键上音高标签的css规则*/
+.piano_keyboard
+.keybutton{
+    position: relative;
+}
+.piano_keyboard
+.keybutton
+.keybutton-pitch_tag{
+    position: absolute;
+    
+    color:#eee;
+    background-color: #888;
+    
+    font-size: 1em;
+    padding: 0.5em;
+
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 1rem;
+}
+
+
+/*隐藏音高标签
+用法：<element class="piano_keyboard" hide_pitch_tag >*/
+.piano_keyboard[hide_pitch_tag]
+.keybutton
+.keybutton-pitch_tag{
+    display: none;
+}

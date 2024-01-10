@@ -1,0 +1,95 @@
+*,::before,::after{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root, body{
+    width: 100vw;
+}
+
+:root{
+    font-size: calc(0.5em + 4vw);
+}
+
+
+body{
+    --_primary_color: rgb(6, 71, 36);
+    --_primary_color-lighter: rgb(12, 161, 39);
+    --_secondary_color: rgb(210, 164, 177);
+
+    --_move_icon_url: url("./assets/icon/move.svg");
+    --_move_bright_icon_url: url("./assets/icon/move_bright.svg");
+    --_back_icon_url: url("./assets/icon/back.svg");
+    --_back_bright_icon_url: url("./assets/icon/back01_bright.svg");
+}
+body{
+    background-color: var(--_primary_color);
+}
+
+
+
+
+.controlbar{
+    color:#eee;
+    background-color: var(--_primary_color);
+}
+.controlbar{
+    height: fit-content;
+
+    padding:0.5em;
+}
+.controlbar{
+    display: flex;
+
+    justify-content: start;
+}
+.controlbar{
+    flex-grow: 0;
+}
+
+.control-item{
+    background-color: var(--_primary_color-lighter);
+    /* background-color: transparent; */
+
+    border-radius: 0.4em;
+    border: 0.2em solid rgba(255,255,255,0.1);
+    /* border: transparent; */
+}
+.control-item{
+    padding: 1em;
+    margin: 0 0.3em;
+}
+.control-item{
+    cursor: pointer;
+}
+
+.control-item[action='go_back']{
+    background-image: var(--_back_bright_icon_url);
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.control-item[action='move_keyboard']{
+    background-image: var(--_move_bright_icon_url);
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+
+
+
+
+
+
+main{
+    width: 100%;
+    height:100vh;
+
+    background-color: var(--_secondary_color);
+}
+main{
+    display: flex;
+    flex-direction: column;
+}
+
+

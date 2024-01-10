@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="piano-keyboard.css">
+
+    <title>test piano keyboard</title>
+</head>
+<body>
+    <div class="test-container">
+        <div class="tone-keyboard">
+            <!-- midi音乐中音符编号从0开始，结束于127，共128个音符
+                note0对应C-1，note127对应G9 -->
+            <div class="tone-keyboard-octave" octave="5">
+                <div class="white-notes">
+                    <button class="tone-keyboard-note" color="white" note="60">C4</button>
+                    <button class="tone-keyboard-note" color="white" note="62">D4</button>
+                    <button class="tone-keyboard-note" color="white" note="64">E4</button>
+                    <button class="tone-keyboard-note" color="white" note="65">F4</button>
+                    <button class="tone-keyboard-note" color="white" note="67">G4</button>
+                    <button class="tone-keyboard-note" color="white" note="69">A4</button>
+                    <button class="tone-keyboard-note" color="white" note="71">B4</button>
+                </div>
+                <div class="black-notes">
+                    <div class="tone-keyboard-blank-space"></div>
+                    <button class="tone-keyboard-note" color="black" note="61">C#4</button>
+                    <button class="tone-keyboard-note" color="black" note="63">D#4</button>
+                    <div class="tone-keyboard-blank-space"></div>
+                    <button class="tone-keyboard-note" color="black" note="66">F#4</button>
+                    <button class="tone-keyboard-note" color="black" note="68">G#4</button>
+                    <button class="tone-keyboard-note" color="black" note="70">A#4</button>
+                    <div class="tone-keyboard-blank-space"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

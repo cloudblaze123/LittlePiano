@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>little piano</title>
+
+
+    <style>
+        .touch_element{
+            padding: 100px;
+        }
+        .element1{
+            background-color: rgb(55, 164, 124);
+        }
+        .element2{
+            background-color: rgb(55, 115, 164);
+        }
+        .element3{
+            background-color: rgb(88, 55, 164);
+        }
+    </style>
+    
+</head>
+<body>
+
+    <main>
+        
+        <div class="touch_element element1" number="no1"></div>
+        <div class="touch_element element2" number="no2"></div>
+        <div class="touch_element element3" number="no3"></div>
+
+    </main>
+
+</body>
+<script>
+    const touch_elements=document.querySelectorAll(".touch_element");
+
+     counter={"no1":0,"no2":0,"no3":0};
+
+    for(const touch_element of touch_elements){
+        touch_element.addEventListener("touchmove", function(event){
+            event.preventDefault();
+            console.log(this);
+            const iden=this.getAttribute("number");
+            console.log(counter[iden]);
+            counter[iden]+=1;
+
+            console.log(counter[iden]);
+            this.innerHTML=counter[iden];
+        })
+    }
+    for(const touch_element of touch_elements){
+        touch_element.addEventListener("mousemove", function(event){
+            event.preventDefault();
+            // console.log(this);
+            const iden=this.getAttribute("number");
+            console.log(counter[iden]);
+            counter[iden]+=1;
+            console.log(counter[iden]);
+            this.innerHTML=counter[iden];
+
+            this.innerHTML=counter[iden];
+        })
+    }
+</script>
+</html>
