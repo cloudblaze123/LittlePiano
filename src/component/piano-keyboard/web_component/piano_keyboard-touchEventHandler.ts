@@ -21,64 +21,51 @@ export class PianoKeyboardTouchEventHandler{
     _initHandler(this:PianoKeyboardTouchEventHandler){
         /*初始化琴键事件，当用户与琴键交互时执行*/
         const keybuttons:NodeListOf<HTMLButtonElement>=this._shadowRoot.querySelectorAll(".keybutton");
+        const keybuttonArea:HTMLElement=this._shadowRoot.querySelector(".piano_keyboard") as HTMLElement;
 
-        for(const keybutton of keybuttons){
-            /*初始化琴键鼠标事件，当用户使用鼠标与琴键交互时执行*/
-            keybutton.addEventListener("touchstart", function(this:PianoKeyboardTouchEventHandler, event:TouchEvent){
-                event.preventDefault();//用来防止按键事件在mousedown再处理一次
-                //目前的问题是，在手机浏览器上如果不让用户按下一次mousedown，浏览器通常不会允许网页音频
-                //但用户点击别的button按键可以解决
-                //可以考虑做一个开始界面，这样用户进入键盘演奏界面时就已经打开了音频权限
 
-                // console.log("touchstart");
+        keybuttonArea.addEventListener("touchstart", function(this:PianoKeyboardTouchEventHandler, event:TouchEvent){
+            event.preventDefault();//用来防止按键事件在mousedown再处理一次
+            // console.log("touchstart");
+            const keybuttons=this._getKeybuttonsFromTouch(event.touches);
 
-                const keybuttons=this._getKeybuttonsFromTouch(event.touches);
+            this._onKeybuttonsDown(...keybuttons);
+        }.bind(this));
 
-                this._onKeybuttonsDown(...keybuttons);
-            }.bind(this));
 
-            
-            keybutton.addEventListener("touchmove", function(this:PianoKeyboardTouchEventHandler, event:TouchEvent){
-                event.preventDefault();//阻止默认的滚动行为
+        keybuttonArea.addEventListener("touchmove", function(this:PianoKeyboardTouchEventHandler, event:TouchEvent){
+            event.preventDefault();//阻止默认的滚动行为
+            // console.log("touchmove");
+            const keybuttonsTouched=this._getKeybuttonsFromTouch(event.touches);
+            const keybuttonsNewDown:HTMLButtonElement[]=[];
+            const keybuttonsNewUp:HTMLButtonElement[]=[];
 
-                // console.log("touchmove");
-
-                const keybuttonsTouched=this._getKeybuttonsFromTouch(event.touches);
-                const keybuttonsNewDown:HTMLButtonElement[]=[];
-                const keybuttonsNewUp:HTMLButtonElement[]=[];
-
-                // console.log("keybuttonsTouched "+keybuttonsTouched);
-
-                for(const keybutton of keybuttonsTouched){
-                    // console.log("keybuttonsTouched "+keybutton);
-                    if(!this._isKeyButtonLastPlayed(keybutton)){
-                        keybuttonsNewDown.push(keybutton);
-                    }
+            // console.log("keybuttonsTouched "+keybuttonsTouched);
+            for(const keybutton of keybuttonsTouched){
+                // console.log("keybuttonsTouched "+keybutton);
+                if(!this._isKeyButtonLastPlayed(keybutton)){
+                    keybuttonsNewDown.push(keybutton);
                 }
-                for(const keybuttonLastPlayed of this._getKeyButtonsLastPlayed()){
-                    if(!(keybuttonsTouched.includes(keybuttonLastPlayed))){
-                        keybuttonsNewUp.push(keybuttonLastPlayed);
-                    }
+            }
+            for(const keybuttonLastPlayed of this._getKeyButtonsLastPlayed()){
+                if(!(keybuttonsTouched.includes(keybuttonLastPlayed))){
+                    keybuttonsNewUp.push(keybuttonLastPlayed);
                 }
+            }
+            // console.log("keybuttonsNewDown "+keybuttonsNewDown);
+            // console.log("keybuttonsNewUp "+keybuttonsNewUp);
+            this._onKeybuttonsDown(...keybuttonsNewDown);
+            this._onKeybuttonsUp(...keybuttonsNewUp);
+        }.bind(this));
 
-                console.log("keybuttonsNewDown "+keybuttonsNewDown);
-                // console.log("keybuttonsNewUp "+keybuttonsNewUp);
-                
-                this._onKeybuttonsDown(...keybuttonsNewDown);
-                this._onKeybuttonsUp(...keybuttonsNewUp);
-            }.bind(this));
-            
 
-            keybutton.addEventListener("touchend", function(this:PianoKeyboardTouchEventHandler, event:TouchEvent){
-                // console.log("touchend");
+        keybuttonArea.addEventListener("touchend", function(this:PianoKeyboardTouchEventHandler, event:TouchEvent){
+            // console.log("touchend");
+            const keybuttonsTouchEnd=this._getKeybuttonsFromTouch(event.changedTouches);
 
-                const keybuttonsTouchEnd=this._getKeybuttonsFromTouch(event.changedTouches);
+            this._onKeybuttonsUp(...keybuttonsTouchEnd);
+        }.bind(this));
 
-                this._onKeybuttonsUp(...keybuttonsTouchEnd);
-
-            }.bind(this));
-            
-        }
     }
        
     
