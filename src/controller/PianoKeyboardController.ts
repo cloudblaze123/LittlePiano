@@ -19,7 +19,7 @@ export class PianoKeyboardController {
 
         this._piano_keyboard.onTriggerAttacked = (function (this: PianoKeyboardController, pitch) {
             this._musicService.attackTrigger(pitch);
-            console.log(this._piano_keyboard);
+            // console.log(this._piano_keyboard);
         }.bind(this));
         this._piano_keyboard.onTriggerReleased = (function (this: PianoKeyboardController, pitch) {
             this._musicService.releaseTrigger(pitch);
