@@ -81,6 +81,16 @@ export class PianoKeyboardViewModel{
         if(!(pitch in this._keybuttons)){
             console.log(`${this}'s keybuttons don't support pitch:${pitch}`);
         }
-        this._keybuttons[pitch].click();
+        this._onKeybuttonDown(this._keybuttons[pitch]);
+    }
+
+
+    hidePitchTag(){
+        const PianoKeyboardElement=this._shadowRoot.querySelector(".piano_keyboard") as HTMLElement
+            PianoKeyboardElement.setAttribute("hide_pitch_tag", "");
+    }
+    showPitchTag(){
+        const PianoKeyboardElement=this._shadowRoot.querySelector(".piano_keyboard") as HTMLElement
+            PianoKeyboardElement.removeAttribute("hide_pitch_tag");
     }
 }
