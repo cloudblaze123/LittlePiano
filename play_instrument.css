@@ -29,6 +29,13 @@ body{
     --_plus_bright_icon_url: url("./assets/icon/plus_bright.svg");
     
     --_minus_bright_icon_url: url("./assets/icon/minus_bright.svg");
+
+    --_show_tag_icon_url: url("./assets/icon/show_tag.png");
+    --_hide_tag_icon_url: url("./assets/icon/hide_tag.png");
+    
+    --_one_row_icon_url: url("./assets/icon/one_row.png");
+    --_two_row_icon_url: url("./assets/icon/two_row.png");
+
 }
 body{
     background-color: var(--_primary_color);
@@ -65,7 +72,7 @@ main{
     height: fit-content;
     width: 100%;
 
-    padding:0.3em 0.5em;
+    padding:0.3em 0.3em 0.5em 0.5em;
 }
 .controlbar{
     font-size: 1rem;
@@ -80,7 +87,22 @@ main{
     flex-grow: 0;
 }
 
-.control-item{
+
+.control_item_group{
+    height: fit-content;
+    width: 100%;
+}
+.control_item_group{
+    display: flex;
+
+    justify-content: start;
+    align-content:space-between;
+
+    overflow-x: scroll;
+    overflow-y: hidden;
+}
+
+.control_item{
     /* background-color: transparent; */
     background-color: var(--_control_item_color);
 
@@ -88,36 +110,57 @@ main{
     /* border: 0.2em solid rgba(255,255,255,0.1); */
     border: transparent;
 }
-.control-item{
+.control_item{
     font-size: 1em;
 
     padding: 0.75em 1em;
     margin-right: 1em;
 }
-.control-item{
+.control_item{
     cursor: pointer;
 }
 
-.control-item[action='go_back']{
+.control_item[action='go_back']{
     background-image: var(--_back_bright_icon_url);
+    background-color: transparent;
     background-position: center;
     background-size: auto 80%;
     background-repeat: no-repeat;
+
+    margin-right: 0.5em;
 }
-.control-item[action='move_keyboard']{
+.control_item[action='move_keyboard']{
     background-image: var(--_move_bright_icon_url);
     background-position: center;
     background-size: auto 80%;
     background-repeat: no-repeat;
 }
-.control-item[action='zoom_out_keyboard']{
+.control_item[action='zoom_out_keyboard']{
     background-image: var(--_minus_bright_icon_url);
     background-position: center;
     background-size: auto 80%;
     background-repeat: no-repeat;
 }
-.control-item[action='zoom_in_keyboard']{
+.control_item[action='zoom_in_keyboard']{
     background-image: var(--_plus_bright_icon_url);
+    background-position: center;
+    background-size: auto 80%;
+    background-repeat: no-repeat;
+}
+.control_item[action='switch_pitch_tag']{
+    background-image: var(--_show_tag_icon_url);
+    background-position: center;
+    background-size: auto 80%;
+    background-repeat: no-repeat;
+}
+.control_item[action='switch_keyboard_row']{
+    background-image: var(--_one_row_icon_url);
+    background-position: center;
+    background-size: auto 80%;
+    background-repeat: no-repeat;
+}
+.control_item[action='switch_keyboard_row'][two_row]{
+    background-image: var(--_two_row_icon_url);
     background-position: center;
     background-size: auto 80%;
     background-repeat: no-repeat;
@@ -138,6 +181,14 @@ main{
     flex-direction: column;
 
     flex-grow: 1;
+}
+.keyboards_container > 
+:last-child{
+    display: none;
+}
+.keyboards_container[two_row] > 
+:last-child{
+    display: block;
 }
 
 

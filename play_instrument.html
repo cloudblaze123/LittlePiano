@@ -23,13 +23,17 @@
     <main>
         
         <div class="controlbar">
-            <button class="control-item" action='go_back' ></button>
-            <button class="control-item" action='move_keyboard' ></button>
-            <button class="control-item" action='zoom_out_keyboard' ></button>
-            <button class="control-item" action='zoom_in_keyboard' ></button>
+            <button class="control_item" action='go_back'></button>
+            <div class="control_item_group">
+                <button class="control_item" action='move_keyboard'></button>
+                <button class="control_item" action='zoom_out_keyboard'></button>
+                <button class="control_item" action='zoom_in_keyboard'></button>
+                <button class="control_item" action='switch_pitch_tag'></button>
+                <button class="control_item" action='switch_keyboard_row' two_row></button>
+            </div>
         </div>
 
-        <div class="keyboards_container">
+        <div class="keyboards_container" two_row>
             <div class="scroll_keyboard_component" enable_scroll>
                 <div class="scrollable_container">
                     <div class="keyboard_container">

@@ -10,7 +10,6 @@ function initControlbar(){
     const keyboardsContainer=document.querySelector(".keyboards_container") as HTMLElement;
     const scrollKeyboardComponents=document.querySelectorAll(".scroll_keyboard_component") as NodeListOf<HTMLElement>;
     
-    
 
 
     const moveKeyboardButton:HTMLButtonElement=document.querySelector("button[action='move_keyboard']") as HTMLButtonElement;
@@ -28,7 +27,6 @@ function initControlbar(){
             piano_keyboard.toggleAttribute("disabled");
         }
     });
- 
     
     
     
@@ -50,6 +48,27 @@ function initControlbar(){
     zoomInKeyboardButton.addEventListener("click", ()=>scaleKeyboard(1.1));
     zoomOutKeyboardButton.addEventListener("click", ()=>scaleKeyboard(0.9));
 
+
+
+    const switchPitchTagKeyboardButton:HTMLButtonElement=document.querySelector("button[action='switch_pitch_tag']") as HTMLButtonElement;
+    switchPitchTagKeyboardButton.addEventListener("click", function(this:HTMLButtonElement){
+        const piano_keyboards=document.querySelectorAll("piano-keyboard") as NodeListOf<PianoKeyboard>;
+        for(const piano_keyboard of piano_keyboards){
+            piano_keyboard.toggleAttribute("hide_pitch_tag");
+        }
+    });
+    
+    
+    
+    const switchKeyboardRowKeyboardButton:HTMLButtonElement=document.querySelector("button[action='switch_keyboard_row']") as HTMLButtonElement;
+    switchKeyboardRowKeyboardButton.addEventListener("click", function(this:HTMLButtonElement){
+        const piano_keyboards=document.querySelectorAll("piano-keyboard") as NodeListOf<PianoKeyboard>;
+        for(const piano_keyboard of piano_keyboards){
+            piano_keyboard.toggleAttribute("two_row");
+        }
+        keyboardsContainer.toggleAttribute("two_row");
+        this.toggleAttribute("two_row");
+    });    
 }
     
     
