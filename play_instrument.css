@@ -122,12 +122,13 @@ main{
 
 .control_item[action='go_back']{
     background-image: var(--_back_bright_icon_url);
-    background-color: transparent;
     background-position: center;
     background-size: auto 80%;
     background-repeat: no-repeat;
-
+    
+    background-color: transparent;
     margin-right: 0.5em;
+    display: block;
 }
 .control_item[action='move_keyboard']{
     background-image: var(--_move_bright_icon_url);

@@ -16,10 +16,18 @@
 
 
 body{
-    background-color: rgb(6, 71, 36);
+    --_primary_color: rgb(6, 71, 36);
+    --_secondary_color: rgb(210, 164, 177);
 }
-main{
-    background-color: rgb(210, 164, 177);
+
+
+
+
+body{
+    background-color: var(--_secondary_color);
+}
+.headbar{
+    background-color: var(--_primary_color);
 }
 
 
@@ -95,6 +103,8 @@ main{
     display: flex;
 
     flex-wrap: wrap;
+    
+    overflow: scroll;
 
     justify-content: center;
     align-items: center;
@@ -105,8 +115,8 @@ main{
 
 
 .nav_item-container{
-    width: calc(100px + 30vw);
-    height: calc(100px + 30vw);
+    width: calc(100px + 25vw);
+    height: calc(100px + 25vw);
 
     border: 5px solid black;
     border-radius: 10px;
