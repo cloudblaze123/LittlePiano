@@ -136,13 +136,13 @@ main{
     background-repeat: no-repeat;
 }
 .control_item[action='zoom_out_keyboard']{
-    background-image: var(--_minus_bright_icon_url);
+    background-image: var(--_plus_bright_icon_url);
     background-position: center;
     background-size: auto 80%;
     background-repeat: no-repeat;
 }
 .control_item[action='zoom_in_keyboard']{
-    background-image: var(--_plus_bright_icon_url);
+    background-image: var(--_minus_bright_icon_url);
     background-position: center;
     background-size: auto 80%;
     background-repeat: no-repeat;
