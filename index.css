@@ -104,7 +104,7 @@ main{
 
     flex-wrap: wrap;
     
-    overflow: scroll;
+    overflow: auto;
 
     justify-content: center;
     align-items: center;
