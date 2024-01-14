@@ -1,0 +1,39 @@
+var t=globalThis,e={},o={},n=t.parcelRequire94c2;function i(t){return`
+        <div class="keybutton_container"><button class="keybutton white_keybutton" pitch="${t}"><div class="keybutton-pitch_tag">${t}</div></button></div>
+    `}function s(t){return`
+        <div class="keybutton_container"><button class="keybutton black_keybutton" pitch="${t}"><div class="keybutton-pitch_tag">${t}</div></button></div>
+    `}function r(t){return`
+    <div class="piano_keyboard-octave" octave="${t}">
+        
+        <div class="white_keybuttons">
+            ${i("C"+t)}
+            ${i("D"+t)}
+            ${i("E"+t)}
+            ${i("F"+t)}
+            ${i("G"+t)}
+            ${i("A"+t)}
+            ${i("B"+t)}
+        </div>
+    
+        
+        <div class="black_keybuttons">
+            ${s("C#"+t)}
+            ${s("D#"+t)}
+            ${s("F#"+t)}
+            ${s("G#"+t)}
+            ${s("A#"+t)}
+        </div>
+    
+    </div>
+    `}null==n&&((n=function(t){if(t in e)return e[t].exports;if(t in o){var n=o[t];delete o[t];var i={id:t,exports:{}};return e[t]=i,n.call(i.exports,i,i.exports),i.exports}var s=Error("Cannot find module '"+t+"'");throw s.code="MODULE_NOT_FOUND",s}).register=function(t,e){o[t]=e},t.parcelRequire94c2=n),(0,n.register)("aBxu6",function(t,e){Object.defineProperty(t.exports,"register",{get:()=>o,set:t=>o=t,enumerable:!0,configurable:!0});var o,n=new Map;o=function(t,e){for(var o=0;o<e.length-1;o+=2)n.set(e[o],{baseUrl:t,path:e[o+1]})}}),n("aBxu6").register(new URL("",import.meta.url).toString(),JSON.parse('["ll2Wh","play_instrument.9d4a4bfb.js","ePn4t","piano_keyboard.cf11986b.css"]'));const u=`
+<div class="piano_keyboard">
+    ${r(2)}
+    ${r(3)}
+    ${r(4)}
+    ${r(5)}
+    ${r(6)}
+</div>
+`;var a={};a=new URL("piano_keyboard.cf11986b.css",import.meta.url).toString();const h=new URL(a).href,d=`
+<link rel="stylesheet" href="${h}">
+`;class _{constructor(t,e){this._pianoKeyboard=t,this._shadowRoot=e,this._initAttribute()}_initAttribute(){for(let t of(this._keybuttons={},this._shadowRoot.querySelectorAll(".keybutton"))){let e=t.getAttribute("pitch");this._keybuttons[e]=t}this._lastPlayedKeybuttons=new Set}getLastPlayedKeybuttons(){return this._lastPlayedKeybuttons}getKeybutton(t){return this._keybuttons[t]}onKeybuttonDown(...t){for(let e of t)this._onKeybuttonDown(e)}_onKeybuttonDown(t){this._lastPlayedKeybuttons.add(t),t.classList.add("active");let e=t.getAttribute("pitch");this._pianoKeyboard._onTriggerAttacked(e)}onKeybuttonUp(...t){for(let e of t)this._onKeybuttonUp(e)}_onKeybuttonUp(t){this._lastPlayedKeybuttons.delete(t),t.classList.remove("active");let e=t.getAttribute("pitch");this._pianoKeyboard._onTriggerReleased(e)}attackTrigger(t){t in this._keybuttons||console.log(`${this}'s keybuttons don't support pitch:${t}`),this._onKeybuttonDown(this._keybuttons[t])}hidePitchTag(){this._shadowRoot.querySelector(".piano_keyboard").setAttribute("hide_pitch_tag","")}showPitchTag(){this._shadowRoot.querySelector(".piano_keyboard").removeAttribute("hide_pitch_tag")}}class l{constructor(t,e){this._isMouseDown=!1,this._viewModel=t,this._shadowRoot=e,this._initHandler()}_initHandler(){for(let t of(this._shadowRoot.addEventListener("mousedown",(function(){this._isMouseDown=!0}).bind(this)),this._shadowRoot.addEventListener("mouseup",(function(){this._isMouseDown=!1}).bind(this)),this._shadowRoot.querySelector(".piano_keyboard").addEventListener("mouseleave",(function(){this._isMouseDown=!1}).bind(this)),this._shadowRoot.querySelectorAll(".keybutton")))t.addEventListener("mousedown",(function(t){let e=t.target;this._onKeybuttonDown(e)}).bind(this)),t.addEventListener("mouseenter",(function(t){let e=t.target;this._isMouseDown&&this._onKeybuttonDown(e)}).bind(this)),t.addEventListener("mouseup",(function(t){let e=t.target;this._isKeyButtonLastPlayed(e)&&this._onKeybuttonUp(e)}).bind(this)),t.addEventListener("mouseleave",(function(t){let e=t.target;this._isKeyButtonLastPlayed(e)&&this._onKeybuttonUp(e)}).bind(this))}_isKeyButtonLastPlayed(t){return this._viewModel.getLastPlayedKeybuttons().has(t)}_onKeybuttonDown(t){this._viewModel.onKeybuttonDown(t)}_onKeybuttonUp(t){this._viewModel.onKeybuttonUp(t)}}class c{constructor(t,e){this._viewModel=t,this._shadowRoot=e,this._boundOnTouchStart=this._onTouchStart.bind(this),this._boundOnTouchMove=this._onTouchMove.bind(this),this._boundOnTouchEnd=this._onTouchEnd.bind(this),this._isDisabled=!1,this._initHandler()}_initHandler(){let t=this._shadowRoot.querySelector(".piano_keyboard");this._setInputContext(t)}_setInputContext(t){this._inputContext=t,t.addEventListener("touchstart",this._boundOnTouchStart),t.addEventListener("touchmove",this._boundOnTouchMove),t.addEventListener("touchend",this._boundOnTouchEnd)}_clearInputContext(){this._inputContext.removeEventListener("touchstart",this._boundOnTouchStart),this._inputContext.removeEventListener("touchmove",this._boundOnTouchMove),this._inputContext.removeEventListener("touchend",this._boundOnTouchEnd)}_changeInputContext(t){this._clearInputContext(),this._setInputContext(t)}setInputContext(t){this._changeInputContext(t)}disableInput(){this._isDisabled=!0}enableInput(){this._isDisabled=!1}_onTouchStart(t){if(this._isDisabled)return;t.preventDefault();let e=this._getKeybuttonsFromTouch(t.touches);this._onKeybuttonsDown(...e)}_onTouchMove(t){if(this._isDisabled)return;t.preventDefault();let e=this._getKeybuttonsFromTouch(t.touches),o=[],n=[];for(let t of e)this._isKeyButtonLastPlayed(t)||o.push(t);for(let t of this._getKeyButtonsLastPlayed())e.includes(t)||n.push(t);this._onKeybuttonsDown(...o),this._onKeybuttonsUp(...n)}_onTouchEnd(t){if(this._isDisabled)return;let e=this._getKeybuttonsFromTouch(t.changedTouches);this._onKeybuttonsUp(...e)}_getKeybuttonsFromTouch(t){let e=[];for(let o of Array.from(t)){let t=this._getKeybuttonFromTouch(o);null!==t&&e.push(t)}return e}_getKeybuttonFromTouch(t){let e=t.clientX,o=t.clientY,n=this._shadowRoot.elementFromPoint(e,o);return n&&n.classList.contains("keybutton")?n:null}_isKeyButtonLastPlayed(t){return this._viewModel.getLastPlayedKeybuttons().has(t)}_getKeyButtonsLastPlayed(){return this._viewModel.getLastPlayedKeybuttons()}_onKeybuttonsDown(...t){this._viewModel.onKeybuttonDown(...t)}_onKeybuttonsUp(...t){this._viewModel.onKeybuttonUp(...t)}}class b extends HTMLElement{constructor(){super(),this._onTriggerAttacked=function(t){console.log("attack trigger: "+t)},this._onTriggerReleased=function(t){console.log("release trigger: "+t)},this._createDOM(),this._viewModel=new _(this,this.shadowRoot),this._mouseEventHandler=new l(this._viewModel,this.shadowRoot),this._touchEventHandler=new c(this._viewModel,this.shadowRoot)}_createDOM(){this.attachShadow({mode:"open"}).innerHTML=d+u}static get observedAttributes(){return["hide_pitch_tag","disabled"]}attributeChangedCallback(t,e,o){"hide_pitch_tag"===t?this._onAttributeHidePitchTagChanged(e,o):"disabled"===t&&this._onAttributeDisabledChanged(e,o)}_isAttributeAdded(t,e){return null===t}_isAttributeRemoved(t,e){return null===e}_onAttributeDisabledChanged(t,e){this._isAttributeAdded(t,e)?this._touchEventHandler.disableInput():this._isAttributeRemoved(t,e)&&this._touchEventHandler.enableInput()}_onAttributeHidePitchTagChanged(t,e){this._isAttributeAdded(t,e)?this._viewModel.hidePitchTag():this._isAttributeRemoved(t,e)&&this._viewModel.showPitchTag()}set onTriggerAttacked(t){this._onTriggerAttacked=t}get onTriggerAttacked(){return this._onTriggerAttacked}set onTriggerReleased(t){this._onTriggerReleased=t}get onTriggerReleased(){return this._onTriggerReleased}setInputContext(t){this._touchEventHandler.setInputContext(t)}attackTrigger(t){console.log(`PianoKeyboard attackTrigger(${t})`),this._viewModel.attackTrigger(t)}}customElements.define("piano-keyboard",b);
+//# sourceMappingURL=play_instrument.9d4a4bfb.js.map
