@@ -41,6 +41,7 @@ pids
 *.seed
 *.pid.lock
 .cache
+.parcel-cache
 
 
 # IDE / Editors #

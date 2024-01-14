@@ -21,20 +21,20 @@ body{
     --_control_item_color: rgb(162, 99, 116);
 
 
-    --_move_icon_url: url("./assets/icon/move.svg");
-    --_move_bright_icon_url: url("./assets/icon/move_bright.svg");
+    --_move_icon_url: url("/assets/icon/move.svg");
+    --_move_bright_icon_url: url("/assets/icon/move_bright.svg");
 
-    --_back_bright_icon_url: url("./assets/icon/back01_bright.svg");
+    --_back_bright_icon_url: url("/assets/icon/back01_bright.svg");
 
-    --_plus_bright_icon_url: url("./assets/icon/plus_bright.svg");
+    --_plus_bright_icon_url: url("/assets/icon/plus_bright.svg");
     
-    --_minus_bright_icon_url: url("./assets/icon/minus_bright.svg");
+    --_minus_bright_icon_url: url("/assets/icon/minus_bright.svg");
 
-    --_show_tag_icon_url: url("./assets/icon/show_tag.png");
-    --_hide_tag_icon_url: url("./assets/icon/hide_tag.png");
+    --_show_tag_icon_url: url("/assets/icon/show_tag.png");
+    --_hide_tag_icon_url: url("/assets/icon/hide_tag.png");
     
-    --_one_row_icon_url: url("./assets/icon/one_row.png");
-    --_two_row_icon_url: url("./assets/icon/two_row.png");
+    --_one_row_icon_url: url("/assets/icon/one_row.png");
+    --_two_row_icon_url: url("/assets/icon/two_row.png");
 
 }
 body{

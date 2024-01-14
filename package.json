@@ -1,11 +1,13 @@
 {
   "devDependencies": {
     "http-server": "^14.1.1",
+    "parcel": "^2.11.0",
     "standardized-audio-context": "^25.3.61",
     "typescript": "^5.3.3"
   },
   "scripts": {
-    "start": "http-server -p 8080"
+    "start": "parcel index.html",
+    "build": "parcel build index.html --public-url /LittlePiano/"
   },
   "type": "module",
   "dependencies": {

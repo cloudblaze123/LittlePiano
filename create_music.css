@@ -9,7 +9,7 @@ body{
     --_primary_color: rgb(6, 71, 36);
     --_secondary_color: rgb(210, 164, 177);
 
-    --_back_bright_icon_url: url("./assets/icon/back01_bright.svg");
+    --_back_bright_icon_url: url("/assets/icon/back01_bright.svg");
 }
 
 
