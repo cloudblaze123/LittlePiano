@@ -1,6 +1,6 @@
 # 小小钢琴 LittlePiano
 
-> 一个简单易用的网页钢琴应用，让你随时随地享受弹琴的乐趣
+> 一个简单易用的网页钢琴应用，让你随时随地享受弹琴的乐趣。点击[**这里**](https://cloudblaze123.github.io/LittlePiano/)开始体验。
 
 ## 目录
 - [小小钢琴 LittlePiano](#小小钢琴-littlepiano)
